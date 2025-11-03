@@ -2,5 +2,5 @@ Maria Reyes Artacho Carrero
 
 
 
-Mi proyecto va sobre la creación de un portfolio
+This Project is created to master the language PHP
 
