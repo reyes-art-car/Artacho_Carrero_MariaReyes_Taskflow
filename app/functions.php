@@ -1,7 +1,5 @@
 <?php
-require_once __DIR__.'/../app/functions.php';
 function obtenerClasePrioridad($prioridad) {
-
     switch ($prioridad) {
         case 'alta':
             return ' priority-alta';
@@ -9,22 +7,33 @@ function obtenerClasePrioridad($prioridad) {
             return ' priority-media';
         case 'baja':
             return ' priority-baja';
+        default:
+            return ''; // No devolver texto visible dentro de class
     }
 }
-        function renderizarTarea($tarea)
-        {
-            $taskClasses = '';
 
-            // Agregamos clase si la tarea está completada
-            if ($tarea['completado'] === true) {
-                $taskClasses .= ' completed';
-            }
+function renderizarTarea($tarea)
+{
+    $taskClasses = '';
 
-            // Concatenamos la clase según la prioridad
-            $taskClasses .= obtenerClasePrioridad($tarea['prioridad']);
-            //Hacemos el li y devolvemos
-            return '<li class="' . trim(obtenerClasePrioridad($tarea['prioridad'])) . '">' . $tarea['titulo'] . '</li>';
-
+    // Agregamos clase si la tarea está completada
+    if (!empty($tarea['completado']) && $tarea['completado'] === true) {
+        $taskClasses .= ' completado';
     }
+
+    // Concatenamos la clase según la prioridad
+    $taskClasses .= obtenerClasePrioridad($tarea['prioridad']);
+
+    // Sanitizamos el título por seguridad
+    $tituloSeguro = htmlspecialchars($tarea['titulo'], ENT_QUOTES, 'UTF-8');
+    $clasesSeguras = htmlspecialchars(trim($taskClasses), ENT_QUOTES, 'UTF-8');
+
+    // Construimos el <li> final y lo devolvemos
+    return '<li class="' . $clasesSeguras . '">' . $tituloSeguro . '</li>';
+}
+
+
+
+
 
 
