@@ -2,5 +2,5 @@ Maria Reyes Artacho Carrero
 
 
 
-Mi proyecto va sobre la creación de un portfolio
+Este es el proyecto Taskflow en el cual se realizan actividades PHP.
 
